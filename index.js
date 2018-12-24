@@ -2,11 +2,17 @@ const express = require('express');
 const helmet = require('helmet');
 const morgan = require('morgan');
 
+const routes = require('./routes/api');
+
 const app = express();
+
 app.use(helmet());
 app.use(morgan('short'));
-const port = 3000;
 
-app.get('/', (req, res) => res.send('Hello World!'));
+app.use('/api', routes);
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+const PORT = 3000;
+
+app.listen(process.env.port || PORT, () =>
+  console.log(`Example app listening on port ${PORT}!`)
+);
