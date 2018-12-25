@@ -4,7 +4,8 @@ const Ninja = require('../models/ninja');
 
 //get a list of ninjas from the db
 router.get('/ninjas', (req, res) => {
-  res.send({ type: 'GET' });
+  // retrieving all ninjas
+  Ninja.find({}).then(ninjas => res.send(ninjas));
 });
 
 //add a new ninja to db
